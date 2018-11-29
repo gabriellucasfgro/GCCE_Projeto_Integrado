@@ -3,8 +3,8 @@ package controle;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import modelo.Aluno;
+import modelo.Carteirinha;
 import modelo.JDBCCarteirinhaDAO;
 
 public class controleFiltrarCarteirinhas {
@@ -18,16 +18,16 @@ public class controleFiltrarCarteirinhas {
     @FXML
     private RadioButton rbTodas;
 
-    public ObservableList<Aluno> processResult() {
+    public ObservableList<Carteirinha> processResult() {
         try {
             if(rbAtivas.isSelected()) {
-                return JDBCCarteirinhaDAO.getInstance().listAlunoCarteirinha("ativas");
+                return JDBCCarteirinhaDAO.getInstance().listCarteirinha("ativas");
             }
             else if(rbVencidas.isSelected()) {
-                return JDBCCarteirinhaDAO.getInstance().listAlunoCarteirinha("vencidas");
+                return JDBCCarteirinhaDAO.getInstance().listCarteirinha("vencidas");
             }
             else {
-                return JDBCCarteirinhaDAO.getInstance().listAlunoCarteirinha("todas");
+                return JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas");
             }
         } catch (Exception e) {
             e.getMessage();

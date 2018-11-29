@@ -12,12 +12,10 @@ import java.util.Date;
 public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
 
     private static JDBCCarteirinhaDAO instance;
-    private ObservableList<Aluno> listaAlunoCarteirinha;
     private ObservableList<Carteirinha> listaCarteirinha;
 
     private JDBCCarteirinhaDAO(){
         listaCarteirinha = FXCollections.observableArrayList();
-        listaAlunoCarteirinha = FXCollections.observableArrayList();
     }
 
     public static JDBCCarteirinhaDAO getInstance(){
@@ -34,7 +32,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         Connection c = FabricaConexao.getConnection();
 
         PreparedStatement pstm = c.prepareStatement(sql);
-        pstm.setInt(1, carteirinha.getMatricula());
+        pstm.setLong(1, carteirinha.getMatricula());
         pstm.setString(2, carteirinha.getValidade());
         pstm.setString(3, "0000-00-00");
         pstm.setInt(4, 0);
@@ -68,7 +66,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         return listaCarteirinha;
     }
 
-    public ObservableList<Aluno> listAlunoCarteirinha(String filtro) throws Exception {
+    public ObservableList<Carteirinha> listCarteirinha(String filtro) throws Exception {
         String sql = new String();
 
         switch (filtro) {
@@ -89,21 +87,21 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
 
         ResultSet rs = stm.executeQuery(sql);
 
-        listaAlunoCarteirinha.clear();
+        listaCarteirinha.clear();
         while(rs.next()) {
-            Aluno a = montaAlunoCarteirinha(rs);
-            listaAlunoCarteirinha.add(a);
+            Carteirinha car = montaCarteirinha(rs);
+            listaCarteirinha.add(car);
         }
 
         rs.close();
         stm.close();
         c.close();
 
-        return listaAlunoCarteirinha;
+        return listaCarteirinha;
     }
 
     public ResultSet getAluno(Aluno aluno) throws Exception {
-        String sql = "CALL getAluno("+aluno.getMatricula()+")";
+        String sql = "CALL getAluno("+aluno.getMatricula()+");";
         Connection c = FabricaConexao.getConnection();
         Statement stm = c.createStatement();
         ResultSet rs = stm
@@ -117,33 +115,20 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
 
     }
 
-    private Aluno montaAlunoCarteirinha(ResultSet rs)throws Exception {
+    private Carteirinha montaCarteirinha(ResultSet rs)throws Exception {
         SimpleDateFormat df = new SimpleDateFormat("MMM/yyyy");
 
         String nome = rs.getString("nome");
         String turma = rs.getString("turma");
         String curso = rs.getString("curso");
-        int matricula = rs.getInt("matricula");
+        long matricula = rs.getLong("matricula");
         String validade = df.format(rs.getDate("validade"));
         String emissao = df.format(rs.getDate("data_de_emissao"));
         int via = rs.getInt("via");
 
-        Aluno aluno = new Aluno(matricula, nome, turma, curso, validade, emissao, via);
+        Carteirinha cart = new Carteirinha(matricula, validade, emissao, via, nome, turma, curso);
 
-        return aluno;
-    }
-
-    private Carteirinha montaCarteirinha(ResultSet rs) throws Exception {
-        SimpleDateFormat df = new SimpleDateFormat("MMM/yyyy");
-
-        int matricula = rs.getInt("aluno_matricula");
-        String validade = df.format(rs.getDate("validade"));
-        String emissao = df.format(rs.getDate("data_de_emissao"));
-        int via = rs.getInt("via");
-
-        Carteirinha car = new Carteirinha(matricula, validade, emissao, via);
-
-        return car;
+        return cart;
     }
 
     private int getTotal() throws Exception {
@@ -172,46 +157,29 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
                 .executeQuery(sql);
 
         if(rs.next()) {
+            stm.close();
+            c.close();
             return true;
         }
         else {
+            stm.close();
+            c.close();
             return false;
         }
     }
 
     public void recreate(Carteirinha carteirinha) throws Exception {
-        DateTime validade = new DateTime(carteirinha.getValidade());
         Connection c = FabricaConexao.getConnection();
         PreparedStatement pstm;
-        if(validade.isAfterNow()) {
-            String sql = "DELETE FROM pi_carteirinha WHERE aluno_matricula = ?";
-            pstm = c.prepareStatement(sql);
-            pstm.setInt(1, carteirinha.getMatricula());
-            pstm.execute();
-
-            sql = "INSERT INTO pi_carteirinha (aluno_matricula, validade, data_de_emissao, via) values (?, ?, ?, ?);";
-
-            pstm = c.prepareStatement(sql);
-
-            pstm.setInt(1, carteirinha.getMatricula());
-            pstm.setString(2, carteirinha.getValidade());
-            pstm.setString(3, "0000-00-00");
-            pstm.setInt(4, 0);
-
-            pstm.execute();
-
-        }
-        else {
-            String sql = "UPDATE pi_carteirinha SET data_de_emissao = ?, validade = ? WHERE aluno_matricula = ?;";
-            pstm = c.prepareStatement(sql);
-            pstm.setString(1, "0000-00-00");
-            pstm.setString(2, carteirinha.getValidade());
-            pstm.setInt(3, carteirinha.getMatricula());
-
-            pstm.execute();
-        }
-
+        String sql = "UPDATE pi_carteirinha SET data_de_emissao = ?, validade = ? WHERE aluno_matricula = ?;";
+        pstm = c.prepareStatement(sql);
+        pstm.setString(1, "0000-00-00");
+        pstm.setString(2, carteirinha.getValidade());
+        pstm.setLong(3, carteirinha.getMatricula());
+        pstm.execute();
         pstm.close();
+
+
         c.close();
 
         listaCarteirinha.add(carteirinha);

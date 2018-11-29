@@ -23,19 +23,19 @@ import java.util.Optional;
 public class controleJanelaPrincipal {
 
     @FXML
-    private TableColumn<Aluno, String> tcName;
+    private TableColumn<Carteirinha, String> tcName;
     @FXML
-    private TableColumn<Aluno, Integer> tcMatricul;
+    private TableColumn<Carteirinha, Long> tcMatricul;
     @FXML
-    private TableColumn<Aluno, String> tcCurs;
+    private TableColumn<Carteirinha, String> tcCurs;
     @FXML
-    private TableColumn<Aluno, String> tcTurm;
+    private TableColumn<Carteirinha, String> tcTurm;
     @FXML
-    private TableColumn<Aluno, String> tcDataEmissao;
+    private TableColumn<Carteirinha, String> tcDataEmissao;
     @FXML
-    private TableColumn<Aluno, String> tcValidade;
+    private TableColumn<Carteirinha, String> tcValidade;
     @FXML
-    private TableColumn<Aluno, Integer> tcVia;
+    private TableColumn<Carteirinha, Integer> tcVia;
 
     @FXML
     private Button btReemitirCarteirinha;
@@ -53,11 +53,11 @@ public class controleJanelaPrincipal {
     @FXML
     private TableView<Aluno> tvAlunos;
     @FXML
-    private TableView<Aluno> tvCarteirinhaAluno;
+    private TableView<Carteirinha> tvCarteirinha;
     @FXML
     private TableColumn<Aluno, String> tcNome;
     @FXML
-    private TableColumn<Aluno, Integer> tcMatricula;
+    private TableColumn<Aluno, Long> tcMatricula;
     @FXML
     private TableColumn<Aluno, Integer> tcCurso;
     @FXML
@@ -130,11 +130,11 @@ public class controleJanelaPrincipal {
             tcMatricul.setCellValueFactory(new PropertyValueFactory<>("matricula"));
             tcCurs.setCellValueFactory(new PropertyValueFactory<>("curso"));
             tcTurm.setCellValueFactory(new PropertyValueFactory<>("turma"));
-            tcDataEmissao.setCellValueFactory(new PropertyValueFactory<>("emissao"));
+            tcDataEmissao.setCellValueFactory(new PropertyValueFactory<>("data_de_emissao"));
             tcValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));
             tcVia.setCellValueFactory(new PropertyValueFactory<>("via"));
             setControleCarteirinha(true);
-            tvCarteirinhaAluno.setItems(JDBCCarteirinhaDAO.getInstance().listAlunoCarteirinha("todas"));
+            tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
         } catch(SQLException e) {
             System.out.println(e.getMessage());
             System.out.println(e.getSQLState());
@@ -175,7 +175,7 @@ public class controleJanelaPrincipal {
 
     @FXML
     private void selecionaCarteirinha() {
-        if(tvCarteirinhaAluno.getSelectionModel().getSelectedItem() != null) {
+        if(tvCarteirinha.getSelectionModel().getSelectedItem() != null) {
             btReemitirCarteirinha.setVisible(true);
             btReemitirCarteirinha.setManaged(true);
         }
@@ -274,7 +274,7 @@ public class controleJanelaPrincipal {
             controleFiltrarAlunos controller = fxmlLoader.getController();
             ObservableList<Aluno> list = null;
             list = controller.processResult();
-            if(!list.isEmpty() && list != null) {
+            if(!list.isEmpty()) {
                 tvAlunos.setItems(list);
             }
             else {
@@ -311,10 +311,10 @@ public class controleJanelaPrincipal {
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             controleFiltrarCarteirinhas controller = fxmlLoader.getController();
-            ObservableList<Aluno> list = null;
+            ObservableList<Carteirinha> list = null;
             list = controller.processResult();
             if(!list.isEmpty() && list != null) {
-                tvCarteirinhaAluno.setItems(list);
+                tvCarteirinha.setItems(list);
             }
             else {
                 try {
@@ -354,14 +354,14 @@ public class controleJanelaPrincipal {
 
     public void setControleCarteirinha(boolean op) {
         if(op) {
-            tvCarteirinhaAluno.setVisible(true);
-            tvCarteirinhaAluno.setManaged(true);
+            tvCarteirinha.setVisible(true);
+            tvCarteirinha.setManaged(true);
             btbarControleCarteirinha.setVisible(true);
             btbarControleCarteirinha.setManaged(true);
         }
         else {
-            tvCarteirinhaAluno.setVisible(false);
-            tvCarteirinhaAluno.setManaged(false);
+            tvCarteirinha.setVisible(false);
+            tvCarteirinha.setManaged(false);
             btbarControleCarteirinha.setVisible(false);
             btbarControleCarteirinha.setManaged(false);
         }
@@ -387,7 +387,7 @@ public class controleJanelaPrincipal {
 
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            Aluno aluno = tvCarteirinhaAluno.getSelectionModel().getSelectedItem();
+            Aluno aluno = tvCarteirinha.getSelectionModel().getSelectedItem();
             controleEmitirCarteirinha controller = fxmlLoader.getController();
             controller.setAluno(aluno);
             Carteirinha carteirinha = controller.processResult();
@@ -403,7 +403,7 @@ public class controleJanelaPrincipal {
                     JasperViewer jv = new JasperViewer(jpPrint,false);
                     jv.setVisible(true);
                     jv.toFront();
-                    tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

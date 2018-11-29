@@ -1,16 +1,17 @@
 package modelo;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Carteirinha {
-    private SimpleIntegerProperty matricula;
+public class Carteirinha extends Aluno{
     private SimpleStringProperty validade;
     private SimpleStringProperty data_de_emissao;
     private SimpleIntegerProperty via;
 
-    public Carteirinha(int mat, String val, String emissao, int v) {
-        this.matricula = new SimpleIntegerProperty();
+    public Carteirinha(long mat, String val, String emissao, int v, String nome, String turm, String curs) {
+        super(mat, nome, turm, curs);
+        this.matricula = new SimpleLongProperty();
         this.validade = new SimpleStringProperty();
         this.data_de_emissao = new SimpleStringProperty();
         this.via = new SimpleIntegerProperty();
@@ -20,8 +21,9 @@ public class Carteirinha {
         this.via.set(v);
     }
 
-    public Carteirinha(int mat, String val) {
-        this.matricula = new SimpleIntegerProperty();
+    public Carteirinha(long mat, String val, String nome, String turm, String curs) {
+        super(mat, nome, turm, curs);
+        this.matricula = new SimpleLongProperty();
         this.validade = new SimpleStringProperty();
         this.data_de_emissao = new SimpleStringProperty();
         this.via = new SimpleIntegerProperty();
@@ -29,11 +31,11 @@ public class Carteirinha {
         this.validade.set(val);
     }
 
-    public int getMatricula() {
+    public long getMatricula() {
         return matricula.get();
     }
 
-    public SimpleIntegerProperty matriculaProperty() {
+    public SimpleLongProperty matriculaProperty() {
         return matricula;
     }
 

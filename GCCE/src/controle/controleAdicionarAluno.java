@@ -31,7 +31,7 @@ public class controleAdicionarAluno {
 
     public Aluno processResult() {
         if(!tfMatricula.getText().isEmpty() && !tfNome.getText().isEmpty() && !tfTurma.getText().isEmpty() && cbCurso.getSelectionModel().getSelectedItem() != null) {
-            int matricula = Integer.parseInt(tfMatricula.getText());
+            long matricula = Long.parseLong(tfMatricula.getText());
             String nome = tfNome.getText();
             String turma = tfTurma.getText();
             Curso curso = (Curso) cbCurso.getSelectionModel().getSelectedItem();

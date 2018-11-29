@@ -31,7 +31,7 @@
                   <TableColumn fx:id="tcTurma" prefWidth="150" text="Turma" />
               </columns>
             </TableView>
-             <TableView fx:id="tvCarteirinhaAluno" managed="false" visible="false" onMouseClicked="#selecionaCarteirinha">
+             <TableView fx:id="tvCarteirinha" managed="false" visible="false" onMouseClicked="#selecionaCarteirinha">
                  <columns>
                      <TableColumn fx:id="tcName" prefWidth="170" text="Nome" />
                      <TableColumn fx:id="tcMatricul" prefWidth="150" text="Matricula" />

@@ -45,7 +45,7 @@ public class controleFiltrarAlunos {
 
             else {
                 if(cbSemCarteirinha.isSelected()) {
-                    return JDBCAlunoDAO.getInstance().list("sc");
+                    return JDBCAlunoDAO.getInstance().list("todosSC");
                 }
                 else {
                     return JDBCAlunoDAO.getInstance().list("todos");

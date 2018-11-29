@@ -1,20 +1,18 @@
 package modelo;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class Aluno {
-    private SimpleIntegerProperty matricula;
-    private SimpleStringProperty nome;
-    private SimpleIntegerProperty curso_id;
-    private SimpleStringProperty turma;
-    private SimpleStringProperty curso;
-    private SimpleStringProperty emissao;
-    private SimpleStringProperty validade;
-    private SimpleIntegerProperty via;
+    protected SimpleLongProperty matricula;
+    protected SimpleStringProperty nome;
+    protected SimpleIntegerProperty curso_id;
+    protected SimpleStringProperty turma;
+    protected SimpleStringProperty curso;
 
-    public Aluno(int mat, String name, String tur, String curs) {
-        this.matricula = new SimpleIntegerProperty();
+    public Aluno(long mat, String name, String tur, String curs) {
+        this.matricula = new SimpleLongProperty();
         this.nome = new SimpleStringProperty();
         this.curso_id = new SimpleIntegerProperty();
         this.turma = new SimpleStringProperty();
@@ -23,60 +21,6 @@ public class Aluno {
         this.nome.set(name);
         this.turma.set(tur);
         this.curso.set(curs);
-    }
-
-    public Aluno(int mat, String name, String tur, String curs, String val, String emiss, int v) {
-        this.matricula = new SimpleIntegerProperty();
-        this.nome = new SimpleStringProperty();
-        this.curso_id = new SimpleIntegerProperty();
-        this.turma = new SimpleStringProperty();
-        this.curso = new SimpleStringProperty();
-        this.emissao = new SimpleStringProperty();
-        this.validade = new SimpleStringProperty();
-        this.via = new SimpleIntegerProperty();
-        this.emissao.set(emiss);
-        this.validade.set(val);
-        this.via.set(v);
-        this.matricula.set(mat);
-        this.nome.set(name);
-        this.turma.set(tur);
-        this.curso.set(curs);
-    }
-
-    public String getEmissao() {
-        return emissao.get();
-    }
-
-    public SimpleStringProperty emissaoProperty() {
-        return emissao;
-    }
-
-    public void setEmissao(String emissao) {
-        this.emissao.set(emissao);
-    }
-
-    public String getValidade() {
-        return validade.get();
-    }
-
-    public SimpleStringProperty validadeProperty() {
-        return validade;
-    }
-
-    public void setValidade(String validade) {
-        this.validade.set(validade);
-    }
-
-    public int getVia() {
-        return via.get();
-    }
-
-    public SimpleIntegerProperty viaProperty() {
-        return via;
-    }
-
-    public void setVia(int via) {
-        this.via.set(via);
     }
 
     public String getCurso() {
@@ -91,11 +35,11 @@ public class Aluno {
         this.curso.set(curso);
     }
 
-    public int getMatricula() {
+    public long getMatricula() {
         return matricula.get();
     }
 
-    public SimpleIntegerProperty matriculaProperty() {
+    public SimpleLongProperty matriculaProperty() {
         return matricula;
     }
 

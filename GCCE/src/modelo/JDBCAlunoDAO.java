@@ -30,7 +30,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
         PreparedStatement pstm = c.prepareStatement(sql);
 
-        pstm.setInt(1, aluno.getMatricula());
+        pstm.setLong(1, aluno.getMatricula());
         pstm.setInt(2, aluno.getCurso_id());
         pstm.setString(3, aluno.getNome());
         pstm.setString(4, aluno.getTurma());
@@ -142,12 +142,12 @@ public class JDBCAlunoDAO implements AlunoDAO {
         String sql = "DELETE FROM pi_carteirinha WHERE aluno_matricula = ?;";
         Connection c = FabricaConexao.getConnection();
         PreparedStatement pstm = c.prepareStatement(sql);
-        pstm.setInt(1, aluno.getMatricula());
+        pstm.setLong(1, aluno.getMatricula());
         pstm.execute();
 
         sql = "DELETE FROM pi_aluno WHERE matricula = ?;";
         pstm = c.prepareStatement(sql);
-        pstm.setInt(1, aluno.getMatricula());
+        pstm.setLong(1, aluno.getMatricula());
         pstm.execute();
 
         pstm.close();
@@ -162,7 +162,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         PreparedStatement pstm = c.prepareStatement(sql);
         pstm.setString(1, aluno.getNome());
         pstm.setString(2, aluno.getTurma());
-        pstm.setInt(3, aluno.getMatricula());
+        pstm.setLong(3, aluno.getMatricula());
 
         pstm.execute();
         pstm.close();
@@ -172,7 +172,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
     private Aluno montaAluno(ResultSet rs) throws Exception {
 
-        int matricula = rs.getInt("matricula");
+        long matricula = rs.getLong("matricula");
         String nome = rs.getString("nome");
         String turma = rs.getString("turma");
         String curso = rs.getString("curso");

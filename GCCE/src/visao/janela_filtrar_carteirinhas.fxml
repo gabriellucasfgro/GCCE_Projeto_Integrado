@@ -44,6 +44,4 @@
         </RadioButton>
     </HBox>
 
-    <TextField fx:id="tf" GridPane.rowIndex="2" />
-
 </GridPane>
