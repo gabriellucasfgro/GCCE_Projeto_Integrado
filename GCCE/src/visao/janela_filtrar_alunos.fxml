@@ -43,7 +43,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
         </RadioButton>
-        <RadioButton fx:id="rbTodas" mnemonicParsing="false" text="Todas" textFill="WHITE" toggleGroup="$opcao">
+        <RadioButton fx:id="rbTodos" mnemonicParsing="false" text="Todos" textFill="WHITE" toggleGroup="$opcao">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>

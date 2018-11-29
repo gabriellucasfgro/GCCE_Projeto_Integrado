@@ -50,7 +50,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
                 sql = "SELECT * FROM pi_relacao_aluno_curso;";
                 break;
             case "todosSC":
-                sql = "SELECT * FROM pi_relacao_alunoSC_curso;";
+                sql = "SELECT * FROM pi_relacao_aluno_cursoSC;";
                 break;
         }
 
@@ -180,7 +180,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         return new Aluno(matricula, nome, turma, curso);
     }
 
-    private int getTotal() throws Exception {
+    public int getTotal() throws Exception {
 
         String sql = "SELECT quantidade_alunos() as quantidade;";
         Connection c = FabricaConexao.getConnection();

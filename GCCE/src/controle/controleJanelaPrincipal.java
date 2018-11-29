@@ -23,6 +23,12 @@ import java.util.Optional;
 public class controleJanelaPrincipal {
 
     @FXML
+    private Label lbCarteirinha;
+
+    @FXML
+    private Label lbAluno;
+
+    @FXML
     private TableColumn<Carteirinha, String> tcName;
     @FXML
     private TableColumn<Carteirinha, Long> tcMatricul;
@@ -198,6 +204,7 @@ public class controleJanelaPrincipal {
             alert.showAndWait();
 
             tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+            lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
 
         }catch (SQLException es) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -237,6 +244,7 @@ public class controleJanelaPrincipal {
             if(aluno != null) {
                 try {
                     JDBCAlunoDAO.getInstance().create(aluno);
+                    lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -274,7 +282,7 @@ public class controleJanelaPrincipal {
             controleFiltrarAlunos controller = fxmlLoader.getController();
             ObservableList<Aluno> list = null;
             list = controller.processResult();
-            if(!list.isEmpty()) {
+            if(!list.isEmpty() && list!= null) {
                 tvAlunos.setItems(list);
             }
             else {
@@ -343,12 +351,21 @@ public class controleJanelaPrincipal {
             btEmitir.setManaged(false);
             btEditar.setVisible(false);
             btEditar.setManaged(false);
+            lbAluno.setVisible(true);
+            lbAluno.setManaged(true);
+            try {
+                lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
+            } catch (Exception e) {
+                e.getMessage();
+            }
         }
         else {
             tvAlunos.setVisible(false);
             tvAlunos.setManaged(false);
             btbarManterAlunos.setVisible(false);
             btbarManterAlunos.setManaged(false);
+            lbAluno.setVisible(false);
+            lbAluno.setManaged(false);
         }
     }
 
@@ -358,8 +375,17 @@ public class controleJanelaPrincipal {
             tvCarteirinha.setManaged(true);
             btbarControleCarteirinha.setVisible(true);
             btbarControleCarteirinha.setManaged(true);
+            lbCarteirinha.setVisible(true);
+            lbCarteirinha.setManaged(true);
+            try {
+                lbCarteirinha.setText(String.valueOf(JDBCCarteirinhaDAO.getInstance().getTotal()));
+            } catch (Exception e) {
+                e.getMessage();
+            }
         }
         else {
+            lbCarteirinha.setVisible(false);
+            lbCarteirinha.setManaged(false);
             tvCarteirinha.setVisible(false);
             tvCarteirinha.setManaged(false);
             btbarControleCarteirinha.setVisible(false);

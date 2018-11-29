@@ -1,10 +1,12 @@
 package modelo;
 
+import com.sun.rowset.CachedRowSetImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.joda.time.DateTime;
 
 
+import javax.sql.rowset.CachedRowSet;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -100,14 +102,21 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         return listaCarteirinha;
     }
 
-    public ResultSet getAluno(Aluno aluno) throws Exception {
+    public CachedRowSetImpl getAluno(Aluno aluno) throws Exception {
         String sql = "CALL getAluno("+aluno.getMatricula()+");";
         Connection c = FabricaConexao.getConnection();
         Statement stm = c.createStatement();
         ResultSet rs = stm
                 .executeQuery(sql);
 
-        return rs;
+        CachedRowSetImpl crs = new CachedRowSetImpl();
+        crs.populate(rs);
+
+        rs.close();
+        stm.close();
+        c.close();
+
+        return crs;
     }
 
     @Override
@@ -131,7 +140,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         return cart;
     }
 
-    private int getTotal() throws Exception {
+    public int getTotal() throws Exception {
 
         String sql = "SELECT quantidade_carteirinhas() as quantidade;";
         Connection c = FabricaConexao.getConnection();
