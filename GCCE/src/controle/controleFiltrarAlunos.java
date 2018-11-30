@@ -18,6 +18,9 @@ public class controleFiltrarAlunos {
     private RadioButton rbTurma;
 
     @FXML
+    private RadioButton rbNome;
+
+    @FXML
     private CheckBox cbSemCarteirinha;
 
     @FXML
@@ -40,6 +43,15 @@ public class controleFiltrarAlunos {
                 }
                 else {
                     return JDBCAlunoDAO.getInstance().listTurma(tf.getText(), "todos");
+                }
+            }
+
+            else if(rbNome.isSelected() && !tf.getText().isEmpty()) {
+                if(cbSemCarteirinha.isSelected()) {
+                    return JDBCAlunoDAO.getInstance().listNome(tf.getText(), "sc");
+                }
+                else {
+                    return JDBCAlunoDAO.getInstance().listNome(tf.getText(), "todos");
                 }
             }
 

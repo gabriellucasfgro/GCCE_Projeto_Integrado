@@ -74,6 +74,38 @@ public class JDBCAlunoDAO implements AlunoDAO {
         return lista;
     }
 
+    public ObservableList<Aluno> listNome(String nome, String filtro) throws Exception {
+
+        String sql = new String();
+
+        switch(filtro) {
+            case "todos":
+                sql = "CALL listarAlunosPorNome('"+nome+"')";
+                break;
+            case "sc":
+                sql = "CALL listarAlunosPorNomeSemCarteirinha('"+nome+"')";
+                break;
+        }
+
+        Connection c = FabricaConexao.getConnection();
+
+        Statement stm = c.createStatement();
+
+        ResultSet rs = stm.executeQuery(sql);
+
+        lista.clear();
+        while(rs.next()) {
+            Aluno u = montaAluno(rs);
+            lista.add(u);
+        }
+
+        rs.close();
+        stm.close();
+        c.close();
+
+        return lista;
+    }
+
     public ObservableList<Aluno> listCurso(String curso, String filtro) throws Exception {
 
         String sql = new String();
@@ -110,18 +142,17 @@ public class JDBCAlunoDAO implements AlunoDAO {
         String sql = new String();
         switch (filtro) {
             case "todos":
-                sql = "CALL listarAlunosPorTurma('"+turma+"')";
+                sql = "CALL listarAlunosPorTurma('?')";
                 break;
             case "sc":
-                sql = "CALL listarAlunosPorTurmaSemCarteirinha('"+turma+"')";
+                sql = "CALL listarAlunosPorTurmaSemCarteirinha('?')";
                 break;
         }
 
         Connection c = FabricaConexao.getConnection();
-
-        Statement stm = c.createStatement();
-
-        ResultSet rs = stm.executeQuery(sql);
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setString(1, turma);
+        ResultSet rs = cstm.executeQuery(sql);
 
         lista.clear();
         while(rs.next()) {
@@ -130,7 +161,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         }
 
         rs.close();
-        stm.close();
+        cstm.close();
         c.close();
 
         return lista;
@@ -170,7 +201,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
     }
 
-    private Aluno montaAluno(ResultSet rs) throws Exception {
+    public Aluno montaAluno(ResultSet rs) throws Exception {
 
         long matricula = rs.getLong("matricula");
         String nome = rs.getString("nome");

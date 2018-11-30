@@ -6,22 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import modelo.Aluno;
-import modelo.Carteirinha;
-import modelo.JDBCAlunoDAO;
-import modelo.JDBCCarteirinhaDAO;
+import modelo.*;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
-import java.io.File;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Optional;
 
 public class controleJanelaPrincipal {
 
+    @FXML
+    private Button btEmitirPorTurma;
     @FXML
     private Label lbCarteirinha;
 
@@ -246,6 +244,10 @@ public class controleJanelaPrincipal {
                     JDBCAlunoDAO.getInstance().create(aluno);
                     lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Sucesso!");
+                    alert.setContentText("Aluno adicionado!");
+                    alert.showAndWait();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -323,6 +325,10 @@ public class controleJanelaPrincipal {
             list = controller.processResult();
             if(!list.isEmpty() && list != null) {
                 tvCarteirinha.setItems(list);
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Sucesso!");
+                alert.setContentText("Carteirinhas filtradas!");
+                alert.showAndWait();
             }
             else {
                 try {
@@ -444,6 +450,53 @@ public class controleJanelaPrincipal {
     }
 
     @FXML
+    private void emitirCarteirinhaTurma() {
+
+        Dialog<ButtonType> dialog = new Dialog<ButtonType>();
+        dialog.setTitle("Emitir Carteirinha por Grupo");
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("../visao/janela_emitir_por_turma.fxml"));
+
+        try{
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            controleEmitirPorTurma controller = fxmlLoader.getController();
+            EmissaoTurma et = controller.processResult();
+            if(et != null) {
+                try {
+                    JRResultSetDataSource relatResul = new
+                            JRResultSetDataSource(JDBCCarteirinhaDAO.getInstance().emitirPorTurma(et));
+                    JasperPrint jpPrint = JasperFillManager
+                            .fillReport("reports/carteirinhaIFPR.jasper",
+                                    new HashMap(),relatResul);
+                    JasperViewer jv = new JasperViewer(jpPrint,false);
+                    jv.setVisible(true);
+                    jv.toFront();
+                    tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
+                    lbCarteirinha.setText(String.valueOf(JDBCCarteirinhaDAO.getInstance().getTotal()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro");
+                alert.setContentText("Não foi possível adicionar aluno, não deixe campos vazios!");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    @FXML
     private void emitirCarteirinha() {
 
         Dialog<ButtonType> dialog = new Dialog<ButtonType>();
@@ -480,6 +533,7 @@ public class controleJanelaPrincipal {
                     jv.setVisible(true);
                     jv.toFront();
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    lbCarteirinha.setText(String.valueOf(JDBCCarteirinhaDAO.getInstance().getTotal()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -522,6 +576,10 @@ public class controleJanelaPrincipal {
                 try {
                     JDBCAlunoDAO.getInstance().update(aluno);
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Sucesso!");
+                    alert.setContentText("Aluno editado!");
+                    alert.showAndWait();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.ComboBox?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.VBox?>
+<GridPane alignment="CENTER" hgap="10" prefHeight="250.0" prefWidth="500.0"
+          style="-fx-background-color: #434343;" vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="controle.controleEmitirPorTurma">
+
+    <VBox GridPane.rowIndex="1">
+        <HBox>
+            <Label text="Validade:" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Label>
+            <DatePicker fx:id="dpValidade" />
+
+        </HBox>
+        <HBox>
+            <Label text="Turma:" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Label>
+            <TextField fx:id="tfTurma" />
+        </HBox>
+    </VBox>
+
+
+</GridPane>

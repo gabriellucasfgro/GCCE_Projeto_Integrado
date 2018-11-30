@@ -27,6 +27,44 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         return instance;
     }
 
+    public CachedRowSetImpl emitirPorTurma(EmissaoTurma et) throws Exception {
+
+        String sql = "CALL listarAlunosPorTurma('?')";
+
+        Connection c = FabricaConexao.getConnection();
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setString(1, et.getTurma());
+        ResultSet rs = cstm.executeQuery(sql);
+
+        while(rs.next()) {
+            Aluno aluno = JDBCAlunoDAO.getInstance().montaAluno(rs);
+            Carteirinha car = new Carteirinha(aluno.getMatricula(), et.getValidade(), aluno.getNome(), aluno.getTurma(), aluno.getCurso());
+            if(verificaCarteirinha(aluno)) {
+                recreate(car);
+            }
+            else {
+                create(car);
+            }
+        }
+
+        rs.close();
+        cstm.close();
+
+        sql = "CALL getAlunosPorTurma('?')";
+        cstm = c.prepareCall(sql);
+        cstm.setString(1, et.getTurma());
+        rs = cstm.executeQuery(sql);
+
+        CachedRowSetImpl crs = new CachedRowSetImpl();
+        crs.populate(rs);
+
+        rs.close();
+        cstm.close();
+        c.close();
+
+        return crs;
+    }
+
     @Override
     public void create(Carteirinha carteirinha) throws Exception {
         String sql = "INSERT INTO pi_carteirinha (aluno_matricula, validade, data_de_emissao, via) values (?, ?, ?, ?);";
@@ -103,17 +141,18 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
     }
 
     public CachedRowSetImpl getAluno(Aluno aluno) throws Exception {
-        String sql = "CALL getAluno("+aluno.getMatricula()+");";
+
+        String sql = "CALL getAluno(?);";
         Connection c = FabricaConexao.getConnection();
-        Statement stm = c.createStatement();
-        ResultSet rs = stm
-                .executeQuery(sql);
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setLong(1, aluno.getMatricula());
+        ResultSet rs = cstm.executeQuery(sql);
 
         CachedRowSetImpl crs = new CachedRowSetImpl();
         crs.populate(rs);
 
         rs.close();
-        stm.close();
+        cstm.close();
         c.close();
 
         return crs;
@@ -159,19 +198,19 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
     }
 
     public boolean verificaCarteirinha(Aluno aluno) throws Exception {
-        String sql = "CALL getAluno("+aluno.getMatricula()+")";
+        String sql = "CALL getAluno(?)";
         Connection c = FabricaConexao.getConnection();
-        Statement stm = c.createStatement();
-        ResultSet rs = stm
-                .executeQuery(sql);
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setLong(1, aluno.getMatricula());
+        ResultSet rs = cstm.executeQuery(sql);
 
         if(rs.next()) {
-            stm.close();
+            cstm.close();
             c.close();
             return true;
         }
         else {
-            stm.close();
+            cstm.close();
             c.close();
             return false;
         }
@@ -188,7 +227,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         pstm.execute();
         pstm.close();
 
-
+        pstm.close();
         c.close();
 
         listaCarteirinha.add(carteirinha);

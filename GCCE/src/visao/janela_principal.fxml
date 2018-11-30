@@ -7,12 +7,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <?import javafx.scene.layout.HBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #434343;" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controle.controleJanelaPrincipal">
@@ -99,17 +97,24 @@
                    <Insets bottom="10" left="10" right="10" top="10" />
                </padding>
                <buttons>
-                   <Button mnemonicParsing="false" onAction="#filtrarCarteirinhas" text="Filtrar">
-                       <graphic>
-                           <ImageView>
-                               <Image url="@../icones/magnifying-glass-3-24.png" />
-                           </ImageView>
-                       </graphic>
-                   </Button>
                    <Button fx:id="btReemitirCarteirinha" managed="false" mnemonicParsing="false" onAction="#reemitirCarteirinha" text="Reemitir Carteirinha" visible="false">
                        <graphic>
                            <ImageView>
                                <Image url="@../icones/printer-24.png" />
+                           </ImageView>
+                       </graphic>
+                   </Button>
+                   <Button fx:id="btEmitirPorTurma" mnemonicParsing="false" onAction="#emitirCarteirinhaTurma" text="Emitir Carteirinhas por Turma">
+                       <graphic>
+                           <ImageView>
+                               <Image url="@../icones/filled-box-24.png" />
+                           </ImageView>
+                       </graphic>
+                   </Button>
+                   <Button mnemonicParsing="false" onAction="#filtrarCarteirinhas" text="Filtrar">
+                       <graphic>
+                           <ImageView>
+                               <Image url="@../icones/magnifying-glass-3-24.png" />
                            </ImageView>
                        </graphic>
                    </Button>

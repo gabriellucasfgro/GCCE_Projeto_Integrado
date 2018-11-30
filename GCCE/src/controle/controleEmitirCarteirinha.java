@@ -14,6 +14,10 @@ public class controleEmitirCarteirinha {
 
     private Aluno aluno;
 
+    public void initialize() {
+        dpValidade.setValue(LocalDate.now().plusYears(1));
+    }
+
     public void setAluno(Aluno a) {
         this.aluno = a;
     }
