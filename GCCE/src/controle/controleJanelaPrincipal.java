@@ -196,24 +196,15 @@ public class controleJanelaPrincipal {
             Aluno aluno = tvAlunos.getSelectionModel().getSelectedItem();
             JDBCAlunoDAO.getInstance().delete(aluno);
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Sucesso!");
-            alert.setContentText("Aluno deletado, e consequentemente carteirinha do aluno também foi deletada.");
-            alert.showAndWait();
-
             tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
             lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
+            selecionaAluno();
+            confirmacao("Aluno removido, e consequentemente sua carterinha também!");
 
         }catch (SQLException es) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setContentText(es.getSQLState());
-            alert.showAndWait();
+            erro(es.getSQLState());
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            erro(e.getMessage());
         }
 
     }
@@ -244,19 +235,20 @@ public class controleJanelaPrincipal {
                     JDBCAlunoDAO.getInstance().create(aluno);
                     lbAluno.setText(String.valueOf(JDBCAlunoDAO.getInstance().getTotal()));
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Sucesso!");
-                    alert.setContentText("Aluno adicionado!");
-                    alert.showAndWait();
+                    selecionaAluno();
+                    confirmacao("Aluno adicionado!");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    erro(e.getMessage());
                 }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível adicionar aluno, não deixe campos vazios!");
-                alert.showAndWait();
+                try {
+                    tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    selecionaAluno();
+                    erro("Não foi possível adicionar aluno, não deixe campos vazios!");
+                }catch (Exception e) {
+                    e.getMessage();
+                }
             }
         }
 
@@ -282,21 +274,21 @@ public class controleJanelaPrincipal {
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             controleFiltrarAlunos controller = fxmlLoader.getController();
-            ObservableList<Aluno> list = null;
+            ObservableList<Aluno> list;
             list = controller.processResult();
-            if(!list.isEmpty() && list!= null) {
+            if(!list.isEmpty()) {
                 tvAlunos.setItems(list);
+                selecionaAluno();
+                confirmacao("Alunos filtrados!");
             }
             else {
                 try {
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    selecionaAluno();
+                    erro("Lista não encontrada! Listando todos...");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    erro(e.getMessage());
                 }
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível filtrar a lista, não deixe campos vazios!");
-                alert.showAndWait();
             }
         }
     }
@@ -321,31 +313,27 @@ public class controleJanelaPrincipal {
         Optional<ButtonType> result = dialog.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
             controleFiltrarCarteirinhas controller = fxmlLoader.getController();
-            ObservableList<Carteirinha> list = null;
+            ObservableList<Carteirinha> list;
             list = controller.processResult();
-            if(!list.isEmpty() && list != null) {
+            if(!list.isEmpty()) {
                 tvCarteirinha.setItems(list);
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Sucesso!");
-                alert.setContentText("Carteirinhas filtradas!");
-                alert.showAndWait();
+                selecionaCarteirinha();
+                confirmacao("Carteirinhas filtradas!");
             }
             else {
                 try {
-                    tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
+                    tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
+                    selecionaCarteirinha();
+                    erro("Lista não encontrada! Listando todos...");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    erro(e.getMessage());
                 }
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível filtrar a lista, não deixe campos vazios!");
-                alert.showAndWait();
             }
         }
 
     }
 
-    public void setManterAluno(boolean op) {
+    private void setManterAluno(boolean op) {
         if(op) {
             tvAlunos.setVisible(true);
             tvAlunos.setManaged(true);
@@ -375,7 +363,7 @@ public class controleJanelaPrincipal {
         }
     }
 
-    public void setControleCarteirinha(boolean op) {
+    private void setControleCarteirinha(boolean op) {
         if(op) {
             tvCarteirinha.setVisible(true);
             tvCarteirinha.setManaged(true);
@@ -436,15 +424,14 @@ public class controleJanelaPrincipal {
                     jv.setVisible(true);
                     jv.toFront();
                     tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
+                    selecionaCarteirinha();
+                    confirmacao("Reemissão efetuada!");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    erro(e.getMessage());
                 }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível adicionar aluno, não deixe campos vazios!");
-                alert.showAndWait();
+                erro("Não foi possível reemitir a carteirinha, não deixe campos vazios!");
             }
         }
     }
@@ -483,15 +470,14 @@ public class controleJanelaPrincipal {
                     jv.toFront();
                     tvCarteirinha.setItems(JDBCCarteirinhaDAO.getInstance().listCarteirinha("todas"));
                     lbCarteirinha.setText(String.valueOf(JDBCCarteirinhaDAO.getInstance().getTotal()));
+                    selecionaCarteirinha();
+                    confirmacao("Carteirinhas emitidas!");
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    erro(e.getMessage());
                 }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível adicionar aluno, não deixe campos vazios!");
-                alert.showAndWait();
+                erro("Não foi possível emitir as carteirinhas das turmas!");
             }
         }
     }
@@ -534,17 +520,30 @@ public class controleJanelaPrincipal {
                     jv.toFront();
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
                     lbCarteirinha.setText(String.valueOf(JDBCCarteirinhaDAO.getInstance().getTotal()));
+                    selecionaAluno();
+                    confirmacao("Carteirinha emitida!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível adicionar aluno, não deixe campos vazios!");
-                alert.showAndWait();
+                erro("Não foi emitir a carteirinha, não deixe campos vazios!");
             }
         }
+    }
+
+    private void erro(String texto) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erro");
+        alert.setContentText(texto);
+        alert.showAndWait();
+    }
+
+    private void confirmacao(String texto) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Sucesso");
+        alert.setContentText(texto);
+        alert.showAndWait();
     }
 
     @FXML
@@ -576,19 +575,14 @@ public class controleJanelaPrincipal {
                 try {
                     JDBCAlunoDAO.getInstance().update(aluno);
                     tvAlunos.setItems(JDBCAlunoDAO.getInstance().list("todos"));
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Sucesso!");
-                    alert.setContentText("Aluno editado!");
-                    alert.showAndWait();
+                    selecionaAluno();
+                    confirmacao("Aluno editado!");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
             else {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erro");
-                alert.setContentText("Não foi possível alterar aluno, não deixe campos vazios!");
-                alert.showAndWait();
+               erro("Não foi possivel alterar aluno!");
             }
         }
     }
