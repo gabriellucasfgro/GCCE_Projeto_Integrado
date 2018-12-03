@@ -2,12 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GCCE/META-INF/GCCE.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleJanelaPrincipal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GCCE/controle/controleJanelaPrincipal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controle/controleJanelaPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controle/controleJanelaPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleAdicionarAluno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleEditarAluno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleEmitirCarteirinha.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleEmitirPorTurma.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GCCE/controle/controleEmitirPorTurma.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleFiltrarAlunos.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleFiltrarCarteirinhas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleJanelaPrincipal$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/controle/controleJanelaPrincipal.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/Aluno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/AlunoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/Carteirinha.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/CarteirinhaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/Curso.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/CursoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/FabricaConexao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/JDBCAlunoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/JDBCCarteirinhaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/modelo/JDBCCursoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/GCCE/visao/janela_emitir_por_turma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/GCCE/visao/janela_emitir_por_turma.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,44 +84,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controle/controleJanelaPrincipal.java">
+        <entry file="file://$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2876">
-              <caret line="357" column="39" lean-forward="true" selection-start-line="357" selection-start-column="39" selection-end-line="357" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controle/controleEmitirCarteirinha.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1184">
-              <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1756">
-              <caret line="97" column="22" lean-forward="true" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="240">
+              <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -163,14 +160,14 @@
         <option value="$PROJECT_DIR$/src/controle/controleFiltrarAlunos.java" />
         <option value="$PROJECT_DIR$/src/modelo/EmissaoTurma.java" />
         <option value="$PROJECT_DIR$/src/controle/controleEmitirPorCurso.java" />
-        <option value="$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml" />
-        <option value="$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java" />
         <option value="$PROJECT_DIR$/src/controle/controleEmitirCarteirinha.java" />
         <option value="$PROJECT_DIR$/src/visao/janela_principal.fxml" />
         <option value="$PROJECT_DIR$/src/visao/janela_filtrar_carteirinhas.fxml" />
-        <option value="$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java" />
-        <option value="$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java" />
         <option value="$PROJECT_DIR$/src/controle/controleJanelaPrincipal.java" />
+        <option value="$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java" />
+        <option value="$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java" />
+        <option value="$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml" />
+        <option value="$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java" />
       </list>
     </option>
   </component>
@@ -181,7 +178,7 @@
     </treeState>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="67" />
     <option name="y" value="27" />
     <option name="width" value="1375" />
@@ -198,7 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -256,7 +253,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -403,9 +400,10 @@
     <option name="totallyTimeSpent" value="1302000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="25" width="1533" height="875" extended-state="6" />
+    <frame x="67" y="25" width="1299" height="743" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25756556" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25778133" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -415,7 +413,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32841823" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32899022" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -423,7 +421,8 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3297587" />
+      <window_info anchor="bottom" id="Messages" order="10" />
+      <window_info anchor="right" id="Maven" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -432,7 +431,6 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info anchor="right" id="Maven" order="8" />
     </layout>
   </component>
   <component name="VcsManagerConfiguration">
@@ -527,81 +525,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/visao/janela_filtrar_alunos.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="41" column="70" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visao/janela_emitir_carteirinha.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="9" lean-forward="true" selection-end-line="26" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="19" selection-start-line="19" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#389#390#0" expanded="true" />
-            <element signature="e#414#415#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/EmissaoTurma.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding>
-            <element signature="e#133#134#0" expanded="true" />
-            <element signature="e#164#165#0" expanded="true" />
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#252#253#0" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-            <element signature="e#354#355#0" expanded="true" />
-            <element signature="e#388#389#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/EmissaoTurma.java" />
     <entry file="file://$PROJECT_DIR$/src/controle/controleFiltrarAlunos.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visao/janela_principal.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/visao/janela_filtrar_carteirinhas.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="43" selection-start-line="3" selection-start-column="43" selection-end-line="3" selection-end-column="43" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/modelo/Carteirinha.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -617,37 +547,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1756">
-          <caret line="97" column="22" lean-forward="true" selection-start-line="97" selection-start-column="22" selection-end-line="97" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1184">
-          <caret line="180" lean-forward="true" selection-start-line="180" selection-end-line="180" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controle/controleEmitirCarteirinha.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
+        <state relative-caret-position="306">
           <caret line="26" selection-start-line="26" selection-end-line="26" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" />
+            <marker date="1543597348000" expanded="true" signature="733:835" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controle/controleJanelaPrincipal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2876">
-          <caret line="357" column="39" lean-forward="true" selection-start-line="357" selection-start-column="39" selection-end-line="357" selection-end-column="39" />
+        <state relative-caret-position="480">
+          <caret line="575" column="61" lean-forward="true" selection-start-line="575" selection-start-column="61" selection-end-line="575" selection-end-column="61" />
+          <folding>
+            <element signature="imports" />
+            <element signature="e#2164#2777#0" />
+            <element signature="e#2776#2777#0" />
+            <element signature="e#7057#7069#0" />
+            <element signature="e#10210#10222#0" />
+            <element signature="e#13653#13665#0" />
+            <element signature="e#15811#15823#0" />
+            <element signature="e#17805#17817#0" />
+            <element signature="e#20501#20513#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/JDBCCarteirinhaDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3066">
+          <caret line="31" column="68" selection-start-line="31" selection-start-column="68" selection-end-line="31" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/modelo/JDBCAlunoDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/visao/janela_emitir_por_turma.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controle/controleEmitirPorTurma.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="25" column="25" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>

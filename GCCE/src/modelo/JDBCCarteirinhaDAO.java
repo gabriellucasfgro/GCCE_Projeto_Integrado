@@ -29,7 +29,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
 
     public CachedRowSetImpl emitirPorTurma(EmissaoTurma et) throws Exception {
 
-        String sql = "{CALL listarAlunosPorTurma('"+et.getTurma()+"')};";
+        String sql = "CALL listarAlunosPorTurma('"+et.getTurma()+"');";
 
         Connection c = FabricaConexao.getConnection();
         Statement stm = c.createStatement();
@@ -51,7 +51,7 @@ public class JDBCCarteirinhaDAO implements CarteirinhaDAO {
         rs.close();
         stm.close();
 
-        sql = "{CALL getAlunosPorTurma('"+et.getTurma()+"')};";
+        sql = "CALL getAlunosPorTurma('"+et.getTurma()+"');";
         stm = c.createStatement();
         //cstm = c.prepareCall(sql);
         //cstm.setString(1, et.getTurma());

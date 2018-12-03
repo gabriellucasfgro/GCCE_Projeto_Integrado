@@ -22,6 +22,22 @@ public class JDBCAlunoDAO implements AlunoDAO {
         return instance;
     }
 
+    public ObservableList<String> getTurmas() throws Exception {
+        ObservableList<String> turmas = FXCollections.observableArrayList();
+
+        String sql = "SELECT turma FROM pi_aluno GROUP BY turma;";
+        Connection c = FabricaConexao.getConnection();
+        Statement stm = c.createStatement();
+        ResultSet rs = stm.executeQuery(sql);
+
+        turmas.clear();
+        while(rs.next()) {
+            turmas.add(rs.getString("turma"));
+        }
+
+        return turmas;
+    }
+
     @Override
     public void create(Aluno aluno) throws Exception {
         String sql = "INSERT INTO pi_aluno (matricula, curso_id, nome, turma) values(?,?,?,?);";
@@ -80,10 +96,10 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
         switch(filtro) {
             case "todos":
-                sql = "{CALL listarAlunosPorNome('"+nome+"')};";
+                sql = "CALL listarAlunosPorNome('"+nome+"');";
                 break;
             case "sc":
-                sql = "{CALL listarAlunosPorNomeSemCarteirinha('"+nome+"')};";
+                sql = "CALL listarAlunosPorNomeSemCarteirinha('"+nome+"');";
                 break;
         }
 
@@ -114,10 +130,10 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
         switch(filtro) {
             case "todos":
-                sql = "{CALL listarAlunosPorCurso('"+curso+"')};";
+                sql = "CALL listarAlunosPorCurso('"+curso+"');";
                 break;
             case "sc":
-                sql = "{CALL listarAlunosPorCursoSemCarteirinha('"+curso+"')};";
+                sql = "CALL listarAlunosPorCursoSemCarteirinha('"+curso+"');";
                 break;
         }
 
@@ -146,10 +162,10 @@ public class JDBCAlunoDAO implements AlunoDAO {
         String sql = new String();
         switch (filtro) {
             case "todos":
-                sql = "{CALL listarAlunosPorTurma('"+turma+"')};";
+                sql = "CALL listarAlunosPorTurma('"+turma+"');";
                 break;
             case "sc":
-                sql = "{CALL listarAlunosPorTurmaSemCarteirinha('"+turma+"')};";
+                sql = "CALL listarAlunosPorTurmaSemCarteirinha('"+turma+"');";
                 break;
         }
 
