@@ -9,6 +9,10 @@ public class Curso {
         this.id = i;
     }
 
+    public Curso(String n) {
+        this.nome = n;
+    }
+
     public String getNome() {
         return nome;
     }

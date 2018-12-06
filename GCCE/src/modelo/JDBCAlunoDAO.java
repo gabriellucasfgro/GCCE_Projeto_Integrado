@@ -96,20 +96,18 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
         switch(filtro) {
             case "todos":
-                sql = "CALL listarAlunosPorNome('"+nome+"');";
+                sql = "CALL listarAlunosPorNome(?);";
                 break;
             case "sc":
-                sql = "CALL listarAlunosPorNomeSemCarteirinha('"+nome+"');";
+                sql = "CALL listarAlunosPorNomeSemCarteirinha(?);";
                 break;
         }
 
         Connection c = FabricaConexao.getConnection();
-        Statement stm = c.createStatement();
-        //CallableStatement cstm = c.prepareCall(sql);
-        //cstm.setString(1, nome);
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setString(1, nome);
 
-        System.out.println(stm);
-        ResultSet rs = stm.executeQuery(sql);
+        ResultSet rs = cstm.executeQuery();
 
         lista.clear();
         while(rs.next()) {
@@ -118,7 +116,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         }
 
         rs.close();
-        stm.close();
+        cstm.close();
         c.close();
 
         return lista;
@@ -130,20 +128,19 @@ public class JDBCAlunoDAO implements AlunoDAO {
 
         switch(filtro) {
             case "todos":
-                sql = "CALL listarAlunosPorCurso('"+curso+"');";
+                sql = "CALL listarAlunosPorCurso(?);";
                 break;
             case "sc":
-                sql = "CALL listarAlunosPorCursoSemCarteirinha('"+curso+"');";
+                sql = "CALL listarAlunosPorCursoSemCarteirinha(?);";
                 break;
         }
 
         Connection c = FabricaConexao.getConnection();
-        Statement stm = c.createStatement();
-        //CallableStatement cstm = c.prepareCall(sql);
-        //cstm.setString(1,curso);
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setString(1,curso);
 
-        stm.executeQuery(sql);
-        ResultSet rs = stm.getResultSet();
+        cstm.executeQuery();
+        ResultSet rs = cstm.getResultSet();
 
         lista.clear();
         while(rs.next()) {
@@ -152,7 +149,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         }
 
         rs.close();
-        stm.close();
+        cstm.close();
         c.close();
 
         return lista;
@@ -162,19 +159,17 @@ public class JDBCAlunoDAO implements AlunoDAO {
         String sql = new String();
         switch (filtro) {
             case "todos":
-                sql = "CALL listarAlunosPorTurma('"+turma+"');";
+                sql = "CALL listarAlunosPorTurma(?);";
                 break;
             case "sc":
-                sql = "CALL listarAlunosPorTurmaSemCarteirinha('"+turma+"');";
+                sql = "CALL listarAlunosPorTurmaSemCarteirinha(?);";
                 break;
         }
 
         Connection c = FabricaConexao.getConnection();
-        Statement stm = c.createStatement();
-        //CallableStatement cstm = c.prepareCall(sql);
-        //cstm.setString(1, turma);
-        stm.executeQuery(sql);
-        ResultSet rs = stm.getResultSet();
+        CallableStatement cstm = c.prepareCall(sql);
+        cstm.setString(1, turma);
+        ResultSet rs = cstm.executeQuery();
 
         lista.clear();
         while(rs.next()) {
@@ -183,7 +178,7 @@ public class JDBCAlunoDAO implements AlunoDAO {
         }
 
         rs.close();
-        stm.close();
+        cstm.close();
         c.close();
 
         return lista;

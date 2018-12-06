@@ -10,6 +10,7 @@ public class Aluno {
     protected SimpleIntegerProperty curso_id;
     protected SimpleStringProperty turma;
     protected SimpleStringProperty curso;
+    protected Curso c;
 
     public Aluno(long mat, String name, String tur, String curs) {
         this.matricula = new SimpleLongProperty();
@@ -17,10 +18,12 @@ public class Aluno {
         this.curso_id = new SimpleIntegerProperty();
         this.turma = new SimpleStringProperty();
         this.curso = new SimpleStringProperty();
+        this.c = new Curso(curs);
         this.matricula.set(mat);
         this.nome.set(name);
         this.turma.set(tur);
         this.curso.set(curs);
+        this.c.setNome(curs);
     }
 
     public String getCurso() {
@@ -33,6 +36,7 @@ public class Aluno {
 
     public void setCurso(String curso) {
         this.curso.set(curso);
+        this.c.setNome(curso);
     }
 
     public long getMatricula() {
@@ -69,6 +73,7 @@ public class Aluno {
 
     public void setCurso_id(int curso_id) {
         this.curso_id.set(curso_id);
+        this.c.setId(curso_id);
     }
 
     public String getTurma() {
