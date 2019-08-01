@@ -1,0 +1,17 @@
+INSERT INTO pi_curso (nome) values("Tecnologia em Análise e Desenvolvimento de Sistemas");
+INSERT INTO pi_curso (nome) values("Tecnologia em Gestão Ambiental");
+INSERT INTO pi_curso (nome) values("Tecnologia em Manutenção Industrial");
+INSERT INTO pi_curso (nome) values("Licenciatura em Ciências Sociais");
+INSERT INTO pi_curso (nome) values("Licenciatura em Física");
+
+--100 registros
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (1,"Leonard","TADS18",1),(2,"Chava","TADS17",1),(3,"Bernard","TADS17",1),(4,"Jeremy","TADS17",1),(5,"Mannix","TADS18",1),(6,"Jada","TADS16",1),(7,"Althea","TADS17",1),(8,"Malcolm","TADS18",1),(9,"Deacon","TADS18",1),(10,"Joshua","TADS18",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (11,"Ciaran","TADS16",1),(12,"Brody","TADS18",1),(13,"Hiroko","TADS16",1),(14,"Jonah","TADS17",1),(15,"Moana","TADS16",1),(16,"Kaitlin","TADS18",1),(17,"Buffy","TADS17",1),(18,"Solomon","TADS18",1),(19,"Fallon","TADS16",1),(20,"Ori","TADS16",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (21,"Mollie","TADS17",1),(22,"Kadeem","TADS17",1),(23,"Jacob","TADS18",1),(24,"Oren","TADS16",1),(25,"Adena","TADS17",1),(26,"Carter","TADS17",1),(27,"Preston","TADS17",1),(28,"Oren","TADS18",1),(29,"Emma","TADS18",1),(30,"Christopher","TADS18",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (31,"Adam","TADS16",1),(32,"Tucker","TADS17",1),(33,"Solomon","TADS16",1),(34,"Chaney","TADS18",1),(35,"Harper","TADS17",1),(36,"Francis","TADS17",1),(37,"Lillith","TADS16",1),(38,"Freya","TADS16",1),(39,"Kareem","TADS17",1),(40,"Adele","TADS16",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (41,"Alfonso","TADS16",1),(42,"Emi","TADS16",1),(43,"Joy","TADS17",1),(44,"Justina","TADS18",1),(45,"Cassandra","TADS16",1),(46,"Harper","TADS18",1),(47,"Paul","TADS17",1),(48,"Amy","TADS17",1),(49,"Pamela","TADS16",1),(50,"Curran","TADS17",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (51,"Kiara","TADS17",1),(52,"Amity","TADS18",1),(53,"Carolyn","TADS17",1),(54,"Hu","TADS18",1),(55,"Hedy","TADS16",1),(56,"Aimee","TADS18",1),(57,"August","TADS17",1),(58,"Herrod","TADS17",1),(59,"Sloane","TADS18",1),(60,"Daniel","TADS17",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (61,"Neville","TADS16",1),(62,"Warren","TADS17",1),(63,"Quynn","TADS17",1),(64,"Wyoming","TADS17",1),(65,"Mara","TADS17",1),(66,"Cade","TADS18",1),(67,"Rahim","TADS18",1),(68,"Cruz","TADS18",1),(69,"Donna","TADS18",1),(70,"Kevin","TADS18",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (71,"Hanna","TADS16",1),(72,"Victoria","TADS17",1),(73,"Freya","TADS16",1),(74,"Pearl","TADS18",1),(75,"Marcia","TADS17",1),(76,"Emily","TADS16",1),(77,"Xyla","TADS17",1),(78,"Vivian","TADS16",1),(79,"Sean","TADS16",1),(80,"Sharon","TADS17",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (81,"Cally","TADS17",1),(82,"Mira","TADS18",1),(83,"Catherine","TADS18",1),(84,"Claudia","TADS16",1),(85,"Kaseem","TADS16",1),(86,"Tana","TADS18",1),(87,"Amy","TADS18",1),(88,"Marvin","TADS17",1),(89,"India","TADS17",1),(90,"Eleanor","TADS16",1);
+INSERT INTO `pi_aluno` (`matricula`,`nome`,`turma`,`curso_id`) VALUES (91,"Nell","TADS16",1),(92,"Merrill","TADS18",1),(93,"Lysandra","TADS16",1),(94,"Daniel","TADS18",1),(95,"Xerxes","TADS17",1),(96,"Malik","TADS18",1),(97,"Jermaine","TADS17",1),(98,"Natalie","TADS18",1),(99,"Amanda","TADS18",1),(100,"Garrett","TADS17",1);

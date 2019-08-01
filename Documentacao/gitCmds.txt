@@ -1,0 +1,26 @@
+Git global setup
+git config --global user.name "Gabriel Lucas Figueiro"
+git config --global user.email "gabriel-lucas11@live.com"
+
+Create a new repository
+git clone http://infoprojetos.com.br:8136/gabriel-lucas11/GCCE_Projeto_Integrado.git
+cd GCCE_Projeto_Integrado
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+cd existing_folder
+git init
+git remote add origin http://infoprojetos.com.br:8136/gabriel-lucas11/GCCE_Projeto_Integrado.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin http://infoprojetos.com.br:8136/gabriel-lucas11/GCCE_Projeto_Integrado.git
+git push -u origin --all
+git push -u origin --tags
